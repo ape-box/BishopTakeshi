@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  takeshi.api:
+    image: takeshiapi
+    build:
+      context: .
+      dockerfile: Api/Dockerfile
+    ports:
+     - "7101:80"
+    environment:
+      - Takeshi.RabbitMq.Host={placeholder}
+      - Takeshi.RabbitMq.User={placeholder}
+      - Takeshi.RabbitMq.Password={placeholder}
+  takeshi.application:
+    image: takeshiapplication
+    build:
+      context: .
+      dockerfile: Application/Dockerfile
+    environment:
+      - Takeshi.RabbitMq.Host={placeholder}
+      - Takeshi.RabbitMq.User={placeholder}
+      - Takeshi.RabbitMq.Password={placeholder}
