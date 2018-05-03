@@ -4,14 +4,14 @@ services:
   takeshi.api:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - Takeshi.RabbitMq.Host=rabbitmq://192.168.150.17:7000/bishop
+      - Takeshi.RabbitMq.Host=rabbitmq://192.168.150.17/bishop
       - Takeshi.RabbitMq.User=bishop
       - Takeshi.RabbitMq.Password=bishop
       - Takeshi.RabbitMq.QueueName=BishopTakeshi
   takeshi.application:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - Takeshi.RabbitMq.Host=rabbitmq://192.168.150.17:7000/bishop
+      - Takeshi.RabbitMq.Host=rabbitmq://192.168.150.17/bishop
       - Takeshi.RabbitMq.User=bishop
       - Takeshi.RabbitMq.Password=bishop
       - Takeshi.RabbitMq.QueueName=BishopTakeshi

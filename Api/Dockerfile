@@ -7,7 +7,7 @@ FROM microsoft/aspnetcore-build:2.0 AS build
 WORKDIR /src
 COPY BishopTakeshi.sln ./
 COPY Api/Api.csproj Api/
-RUN dotnet restore -nowarn:msb3202
+RUN dotnet restore -nowarn:msb3202,nu1503
 COPY . .
 WORKDIR /src/Api
 RUN dotnet build -c Release -o /app
