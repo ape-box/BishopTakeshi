@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <DockerComposeProjectPath>..\docker-compose.dcproj</DockerComposeProjectPath>
-    <AssemblyName>BishopTakeshi.Api</AssemblyName>
+    <AssemblyName>BT.ApiForefront</AssemblyName>
     <RootNamespace>BishopTakeshi.Api</RootNamespace>
   </PropertyGroup>
 

@@ -2,10 +2,10 @@
 using System.IO;
 using System.Runtime.Loader;
 using System.Threading;
-using BishopTakeshi.Application.Host;
+using BishopTakeshi.Service.Host.Host;
 using Microsoft.Extensions.Configuration;
 
-namespace BishopTakeshi.Application
+namespace BishopTakeshi.Service.ConsoleHost
 {
     class Program
     {

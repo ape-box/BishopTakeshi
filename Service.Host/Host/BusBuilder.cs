@@ -1,17 +1,15 @@
 ﻿using System;
 using Autofac;
+using BishopTakeshi.Messages.V1.Events;
+using BishopTakeshi.Service.ConsoleHost.Handlers;
 using MassTransit;
 
-namespace BishopTakeshi.Application.Host
+namespace BishopTakeshi.Service.ConsoleHost.Host
 {
-    using BishopTakeshi.Application.Handlers;
-    using BishopTakeshi.Messages.V1.Events;
-
     public class BusBuilder
     {
         private readonly ContainerBuilder configuredBuilder;
         private readonly Func<string, string> settingsResolver;
-
 
         public BusBuilder(Func<string, string> settingsResolver)
         {
@@ -28,8 +26,11 @@ namespace BishopTakeshi.Application.Host
         {
             RegisterMassTransit(builder);
 
+            builder.RegisterType<ValuesSumService>()
+                .AsSelf();
+
             builder.RegisterType<ValuesHandler>()
-                .As<IConsumer<ValueReceived>>();
+                .As<IConsumer<ValuesReceived>>();
 
             return builder;
         }
