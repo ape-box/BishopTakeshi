@@ -6,24 +6,38 @@ using MassTransit;
 
 namespace BishopTakeshi.Service.ConsoleHost.Handlers
 {
-    public class ValuesHandler : IConsumer<SumValues>
+    public class ValuesHandler :
+        IConsumer<FindArticleWithAllTagsMatching>,
+        IConsumer<FindArticleWithSomeTagsMatching>
     {
-        private readonly ValuesSumService sumService;
+        private readonly IConsumeMatchingCommands articlesService;
 
-        public ValuesHandler(ValuesSumService sumService)
+        public ValuesHandler(FindMatchingArticleService sumService)
         {
-            this.sumService = sumService ?? throw new ArgumentNullException(nameof(sumService));
+            this.articlesService = sumService ?? throw new ArgumentNullException(nameof(sumService));
         }
 
-        public async Task Consume(ConsumeContext<SumValues> context)
-        {
-            var t = context.Message.ConsistencyToken;
-            Console.WriteLine($"[{t}] Received values '{string.Join(",", context.Message.Values)}'");
-            await context.Publish(new ValuesReceived(context.Message.Values));
+        public Task Consume(ConsumeContext<FindArticleWithAllTagsMatching> context)
+            => Consume(context, context.Message);
 
-            var sum = sumService.Consume(context.Message);
-            Console.WriteLine($"[{t}] Values sum is '{sum}'");
-            await context.Publish(new ValuesSummed(context.Message.Values, sum));
-        }
+        public Task Consume(ConsumeContext<FindArticleWithSomeTagsMatching> context)
+            => Consume(context, context.Message);
+
+        private Task Consume<T>(IPublishEndpoint bus, T message)
+            where  T : IMatchArticlesCommand
+            => bus.Publish(
+                new AriclesMatchingFound(
+                    articlesService.Consume(message), message.Tags));
+
+        //public async Task Consume(ConsumeContext<FindArticleWithAllTagsMatching> context)
+        //{
+        //    var t = context.Message.ConsistencyToken;
+        //    Console.WriteLine($"[{t}] Received values '{string.Join(",", context.Message.Values)}'");
+        //    await context.Publish(new ValuesReceived(context.Message.Values));
+
+        //    var sum = articlesService.Consume(context.Message);
+        //    Console.WriteLine($"[{t}] Values sum is '{sum}'");
+        //    await context.Publish(new ValuesSummed(context.Message.Values, sum));
+        //}
     }
 }

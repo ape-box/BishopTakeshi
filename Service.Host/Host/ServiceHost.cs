@@ -1,11 +1,10 @@
 ﻿using System;
 using Autofac;
+using BishopTakeshi.Service.ConsoleHost.Host;
 using MassTransit;
 
 namespace BishopTakeshi.Service.Host.Host
 {
-    using BishopTakeshi.Service.ConsoleHost.Host;
-
     public class ServiceHost : MarshalByRefObject, IDisposable
     {
         private readonly IContainer container;

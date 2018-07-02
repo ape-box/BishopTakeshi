@@ -7,25 +7,33 @@ namespace BishopTakeshi.Api.Controllers
     public class ValuesModel
     {
         [Required]
-        public IEnumerable<string> ValuesToSum { get; set; }
+        public IEnumerable<(string id, string[] tags)> Articles { get; set; }
 
-        internal IEnumerable<int> ValuesToSumAsIntegers
-            => ValuesToSum.Select(int.Parse);
+        [Required]
+        public IEnumerable<string> Tags { get; set; }
+
+        [Required]
+        public ServiceOperation Operation { get; set; }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
-            if (ValuesToSum == null)
+            if (Articles == null || Articles.Any(HaveInvalidEntry))
             {
-                yield return new InvalidSyntaxResult(
-                    "A list of values must be provided, empty list is fine.",
-                    new[] { nameof(ValuesToSum) });
+                yield return new ValidationResult($"A list of {nameof(Articles)} must be provided, in the form of (id, tags).", new[] { nameof(Articles) });
             }
-            else if (ValuesToSum.Select(t => !int.TryParse(t, out var value)).Any())
+
+            if (Tags == null || !Tags.Any())
             {
-                yield return new InvalidFormatResult(
-                    "Values must be integers.",
-                    new[] { nameof(ValuesToSum) });
+                yield return new ValidationResult($"A non empty list of {nameof(Tags)} must be provided.", new[] { nameof(Tags) });
+            }
+
+            if (Operation == default(ServiceOperation))
+            {
+                yield return new ValidationResult($"A valid {nameof(Operation)} must be provided.", new[] { nameof(Operation) });
             }
         }
+
+        private static bool HaveInvalidEntry((string id, string[] tags) article)
+            => string.IsNullOrEmpty(article.id) || article.tags == null || article.tags.Any(string.IsNullOrEmpty);
     }
 }

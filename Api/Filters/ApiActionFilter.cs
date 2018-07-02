@@ -1,17 +1,23 @@
 ﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+using BishopTakeshi.Api.Loggers;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Newtonsoft.Json;
 
 namespace BishopTakeshi.Api.Filters
 {
     public class ApiActionFilter : IAsyncActionFilter
     {
+        public static IApiLogger ApiLogger { get; set; }
+
+        private static int currentActionIndex = 0;
+
         public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
         {
-            var inputModel = JsonConvert.SerializeObject(context.ActionArguments);
+            var cai = currentActionIndex++;
+            await ApiLogger.BeforeAction(cai, context);
+
             var result = await next();
-            var responseBody = JsonConvert.SerializeObject((result.Result as ObjectResult)?.Value ?? string.Empty);
+
+            await ApiLogger.AfterAction(cai, result);
         }
     }
 }

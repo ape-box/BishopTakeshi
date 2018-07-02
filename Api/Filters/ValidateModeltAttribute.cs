@@ -10,8 +10,6 @@ namespace BishopTakeshi.Api.Filters
             if (context.ModelState.IsValid) return;
 
             context.Result = new BadRequestObjectResult(context.ModelState);
-            //context.Result = new ValidationFailedResult(context.ModelState);
-            //throw new Exception("WIP");
         }
     }
 }

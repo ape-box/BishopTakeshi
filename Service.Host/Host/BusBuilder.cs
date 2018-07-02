@@ -1,6 +1,5 @@
 ﻿using System;
 using Autofac;
-using BishopTakeshi.Messages.V1.Events;
 using BishopTakeshi.Service.ConsoleHost.Handlers;
 using MassTransit;
 
@@ -26,11 +25,12 @@ namespace BishopTakeshi.Service.ConsoleHost.Host
         {
             RegisterMassTransit(builder);
 
-            builder.RegisterType<ValuesSumService>()
-                .AsSelf();
+            builder.RegisterType<FindMatchingArticleService>()
+                .AsSelf()
+                .AsImplementedInterfaces();
 
             builder.RegisterType<ValuesHandler>()
-                .As<IConsumer<ValuesReceived>>();
+                .AsImplementedInterfaces();
 
             return builder;
         }

@@ -1,11 +1,11 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
 using BishopTakeshi.Api.Controllers;
+using BishopTakeshi.Messages.V1;
 using BishopTakeshi.Messages.V1.Commands;
 using MassTransit;
 
-namespace BishopTakeshi.Api
+namespace BishopTakeshi.Api.ServicePlugs
 {
     public interface ICommandIssuer
     {
@@ -23,7 +23,18 @@ namespace BishopTakeshi.Api
 
         public async Task<Guid> IssueCommand(ValuesModel valuesModel)
         {
-            var command = new SumValues(valuesModel.ValuesToSum.Select(int.Parse));
+            MessageBase command;
+            switch (valuesModel.Operation)
+            {
+                case ServiceOperation.FindArticleWithAllTagsMatching:
+                    command = new FindArticleWithAllTagsMatching(valuesModel.Articles, valuesModel.Tags);
+                    break;
+                case ServiceOperation.FindArticleWithSomeTagsMatching:
+                    command = new FindArticleWithSomeTagsMatching(valuesModel.Articles, valuesModel.Tags);
+                    break;
+                default:
+                    throw new InvalidServiceOperation();
+            }
             await valuesSummerQueue.Send(command);
 
             return command.ConsistencyToken;

@@ -2,7 +2,9 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
 using BishopTakeshi.Api.Filters;
+using BishopTakeshi.Api.Loggers;
 using BishopTakeshi.Api.Middleware;
+using BishopTakeshi.Api.ServicePlugs;
 using MassTransit;
 using MassTransit.Util;
 using Microsoft.AspNetCore.Builder;
@@ -29,8 +31,9 @@ namespace BishopTakeshi.Api
         {
             services.AddMvc(c =>
             {
+                ApiActionFilter.ApiLogger = new ApiLogger();
+
                 c.Filters.Add(typeof(ApiActionFilter));
-                c.Filters.Add(typeof(ApiResultFilter));
                 c.Filters.Add(typeof(ValidateModeltAttribute));
             });
 
