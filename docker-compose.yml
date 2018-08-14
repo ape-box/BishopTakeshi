@@ -1,4 +1,4 @@
-version: '3'
+version: '3.4'
 
 services:
   takeshi.api:
@@ -16,7 +16,7 @@ services:
     image: takeshiapplication
     build:
       context: .
-      dockerfile: Application/Dockerfile
+      dockerfile: Service.Host/Dockerfile
     environment:
       - Takeshi.RabbitMq.Host={placeholder}
       - Takeshi.RabbitMq.User={placeholder}
