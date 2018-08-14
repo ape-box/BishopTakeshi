@@ -2,14 +2,14 @@
 using System.IO;
 using System.Runtime.Loader;
 using System.Threading;
-using BishopTakeshi.Service.Host.Host;
+//using BishopTakeshi.Service.ConsoleHost.Host;
 using Microsoft.Extensions.Configuration;
 
 namespace BishopTakeshi.Service.ConsoleHost
 {
     class Program
     {
-        private static ServiceHost service;
+        //private static ServiceHost service;
 
         private static IConfigurationRoot Configuration;
 
@@ -32,7 +32,7 @@ namespace BishopTakeshi.Service.ConsoleHost
 
                 Configuration = builder.Build();
 
-                service = new ServiceHost(Setting);
+                //service = new ServiceHost(Setting);
 
                 while (true)
                 {
@@ -53,7 +53,7 @@ namespace BishopTakeshi.Service.ConsoleHost
         private static void CancelHandler(object sender, ConsoleCancelEventArgs e)
         {
             System.Console.WriteLine("Exiting ...");
-            service.Dispose();
+            //service.Dispose();
             System.Console.WriteLine("Service stopped!");
             System.Environment.Exit(0);
         }

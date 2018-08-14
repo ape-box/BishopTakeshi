@@ -12,10 +12,10 @@ namespace BishopTakeshi.Service.ConsoleHost.Handlers
     {
         private readonly IConsumeMatchingCommands articlesService;
 
-        public ValuesHandler(FindMatchingArticleService sumService)
-        {
-            this.articlesService = sumService ?? throw new ArgumentNullException(nameof(sumService));
-        }
+        //public ValuesHandler(FindMatchingArticleService sumService)
+        //{
+        //    this.articlesService = sumService ?? throw new ArgumentNullException(nameof(sumService));
+        //}
 
         public Task Consume(ConsumeContext<FindArticleWithAllTagsMatching> context)
             => Consume(context, context.Message);

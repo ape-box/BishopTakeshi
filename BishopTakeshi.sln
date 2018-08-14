@@ -21,6 +21,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service", "Service\Service.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Service.Logger.ConsoleHost", "Service.Logger.ConsoleHost\Service.Logger.ConsoleHost.csproj", "{8497880F-B884-498D-91D9-762CF9A4852D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Service.UnitTests", "..\Service.UnitTests\Service.UnitTests.csproj", "{3C34C509-B3F8-4C66-9905-B3ADBE4A1C01}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{8497880F-B884-498D-91D9-762CF9A4852D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8497880F-B884-498D-91D9-762CF9A4852D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8497880F-B884-498D-91D9-762CF9A4852D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C34C509-B3F8-4C66-9905-B3ADBE4A1C01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C34C509-B3F8-4C66-9905-B3ADBE4A1C01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C34C509-B3F8-4C66-9905-B3ADBE4A1C01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C34C509-B3F8-4C66-9905-B3ADBE4A1C01}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
