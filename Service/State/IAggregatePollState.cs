@@ -1,5 +1,5 @@
-using BishopTakeshi.Service.Aggregates.Events;
 using System.Collections.Generic;
+using BishopTakeshi.Service.Events;
 
 namespace BishopTakeshi.Service.State
 {

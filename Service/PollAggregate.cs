@@ -1,9 +1,9 @@
-using BishopTakeshi.Service.Aggregates.Events;
-using BishopTakeshi.Service.State;
 using System;
 using System.Collections.Generic;
+using BishopTakeshi.Service.Events;
+using BishopTakeshi.Service.State;
 
-namespace BishopTakeshi.Service.Aggregates
+namespace BishopTakeshi.Service
 {
     public class PollAggregate : IAggregatePollState
     {

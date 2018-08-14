@@ -1,4 +1,4 @@
-﻿namespace BishopTakeshi.Service.Aggregates.Commands
+﻿namespace BishopTakeshi.Service.Commands
 {
     public class CreatePoll : IPollCommand
     {

@@ -1,4 +1,4 @@
-﻿using BishopTakeshi.Service.Aggregates.Events;
+﻿using BishopTakeshi.Service.Events;
 using BishopTakeshi.Service.State;
 
 namespace BishopTakeshi.Service.Appliers

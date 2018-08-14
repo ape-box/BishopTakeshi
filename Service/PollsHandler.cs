@@ -1,11 +1,10 @@
-﻿using BishopTakeshi.Service.Aggregates;
-using BishopTakeshi.Service.Aggregates.Commands;
-using BishopTakeshi.Service.Aggregates.Events;
-using BishopTakeshi.Service.Appliers;
+﻿using BishopTakeshi.Service.Appliers;
 using BishopTakeshi.Service.State;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using BishopTakeshi.Service.Commands;
+using BishopTakeshi.Service.Repositories;
 
 namespace BishopTakeshi.Service
 {

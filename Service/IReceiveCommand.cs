@@ -1,9 +1,7 @@
 using System;
-using System.Collections.Generic;
-using BishopTakeshi.Service.Aggregates.Commands;
-using BishopTakeshi.Service.Aggregates.Events;
+using BishopTakeshi.Service.Commands;
 
-namespace BishopTakeshi.Service.Aggregates
+namespace BishopTakeshi.Service
 {
     public interface IReceiveCommand<in Cmd> 
         where Cmd : IPollCommand

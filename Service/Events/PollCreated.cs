@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BishopTakeshi.Service.Aggregates.Events
+namespace BishopTakeshi.Service.Events
 {
     public class PollCreated : IPollEvent
     {
